@@ -21,6 +21,29 @@ public:
 	void traverse();
 };
 void CircularLinkedList::addNode() { //write your answer here
+	int rollno;
+	string name;
+
+	cout << "Enter your roll number: ";
+	cin >> rollno;
+	cout << "Enter your name: ";
+	cin >> name;
+
+	Node* newNode = new Node(); //a.1
+	newNode->rollNumber = rollno;  //a.2
+	newNode->name = name;
+
+	if (listEmpty()) {//a.3
+		newNode->next = newNode;
+		LAST = newNode;//a.4
+	}
+	else {
+		newNode->next = LAST->next;//b.1
+		LAST->next = newNode;
+		LAST = newNode;
+	}
+	cout << "\nAdd successfuly" << endl;
+
 }
 bool CircularLinkedList::search(int rollno, Node** previous, Node** current) {
 	*previous = LAST->next;
@@ -43,6 +66,36 @@ bool CircularLinkedList::listEmpty() {
 	return LAST == NULL;
 }
 bool CircularLinkedList::delNode() { //write your answer here
+	if (listEmpty()) { //1.a
+		cout << "List is Empty" << endl;
+		return false;//1.b
+	}
+
+	int rollno;
+	cout << "Enter your roll number to delete: ";
+	cin >> rollno;
+
+	Node* andriansyah = NULL;
+	Node* yafi = NULL;
+
+	if (!search(rollno, &andriansyah, &yafi)) {
+		cout << "Your roll number " << rollno << " Not found" << endl;
+		return false;
+	}
+	if (yafi == LAST && yafi->next == LAST) {//a.2 & a.3
+		LAST = NULL;
+	}
+	else if (yafi == LAST) {//b.2
+		andriansyah = LAST;//b.1
+		andriansyah->next = LAST->next;
+	}
+	else {
+		andriansyah->next = yafi->next;
+	}
+
+	delete yafi;
+	cout << "Delete successfuly" << endl;
+	return true;
 }
 void CircularLinkedList::traverse() {
 	if (listEmpty()) {
@@ -72,8 +125,12 @@ int main() {
 			cin >> ch;
 			switch (ch) {
 			case '1': {
+				obj.addNode();
+				break;
 			}
 			case '2': {
+				obj.delNode();
+				break;
 			}
 			case '3': {
 				obj.traverse();
