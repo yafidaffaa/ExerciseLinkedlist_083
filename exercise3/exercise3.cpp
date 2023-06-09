@@ -67,7 +67,7 @@ bool CircularLinkedList::listEmpty() {
 }
 bool CircularLinkedList::delNode() { //write your answer here
 	if (listEmpty()) { //1.a
-		cout << "List is Empty" << endl;
+		cout << "\nList is Empty" << endl;
 		return false;//1.b
 	}
 
@@ -94,7 +94,7 @@ bool CircularLinkedList::delNode() { //write your answer here
 	}
 
 	delete yafi;
-	cout << "Delete successfuly" << endl;
+	cout << "\nDelete successfuly" << endl;
 	return true;
 }
 void CircularLinkedList::traverse() {
