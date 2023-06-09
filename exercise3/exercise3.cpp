@@ -15,7 +15,7 @@ public:
 		LAST = NULL;
 	}
 	void addNode();
-	bool search(int rollno, Node** previous, Node** current);
+	bool search(int rollno, Node** andriansyah, Node** yafi);
 	bool listEmpty();
 	bool delNode();
 	void traverse();
@@ -45,15 +45,15 @@ void CircularLinkedList::addNode() { //write your answer here
 	cout << "\nAdd successfuly" << endl;
 
 }
-bool CircularLinkedList::search(int rollno, Node** previous, Node** current) {
-	*previous = LAST->next;
-	*current = LAST->next;
-	while (*current != LAST) {
-		if (rollno == (*current)->rollNumber) {
+bool CircularLinkedList::search(int rollno, Node** andriansyah, Node** yafi) {
+	*andriansyah = LAST->next;
+	*yafi = LAST->next;
+	while (*yafi != LAST) {
+		if (rollno == (*yafi)->rollNumber) {
 			return true;
 		}
-		*previous = *current;
-		*current = (*current)->next;
+		*andriansyah = *yafi;
+		*yafi = (*yafi)->next;
 	}
 	if (rollno == LAST->rollNumber) {
 		return true;
@@ -86,11 +86,11 @@ bool CircularLinkedList::delNode() { //write your answer here
 		LAST = NULL;
 	}
 	else if (yafi == LAST) {//b.2
-		andriansyah = LAST;//b.1
-		andriansyah->next = LAST->next;
+		andriansyah = LAST;//b.1  
+		andriansyah->next = LAST->next;//b.5
 	}
 	else {
-		andriansyah->next = yafi->next;
+		andriansyah->next = yafi->next;//b.4
 	}
 
 	delete yafi;
